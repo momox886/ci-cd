@@ -33,16 +33,31 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Test SSH Connexion
-        run: ssh momo@100.72.165.35 "echo 'Connexion OK !'"
-
-      - name: Repo cloning
-        uses: actions/checkout@v4
-
-      - name: Listing repo
+      - name: Deploy to server
         run: |
-          ls
+          ssh root@100.72.165.35 << 'EOF'
+            echo "Déploiement du site statique..."
 
-      - name: Qui je suis
-        run: |
-          whoami
+            # Répertoire temporaire pour cloner le repo
+            TMP_DIR="/tmp/site"
+            rm -rf $TMP_DIR
+            mkdir -p $TMP_DIR
+            cd $TMP_DIR
+
+            # Cloner le repo (profondité minimale pour gagner du temps)
+            git clone --depth 1 git@github.com:momox886/ci-cd.git .
+
+            # Copier les fichiers dans le répertoire Apache
+            WEB_DIR="/var/www/html"
+            cp index.html $WEB_DIR/index.html
+            cp style.css $WEB_DIR/style.css
+
+            # Vérifier permissions
+            chown www-data:www-data $WEB_DIR/index.html $WEB_DIR/style.css
+            chmod 644 $WEB_DIR/index.html $WEB_DIR/style.css
+
+            # Redémarrer Apache (NOPASSWD doit être configuré)
+            sudo /usr/bin/systemctl restart apache2
+
+            echo "Déploiement terminé !"
+          EOF
