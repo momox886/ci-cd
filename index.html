@@ -6,10 +6,14 @@
     <title>BC3 Blog Directory</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="light">
+
     <header>
-        <h1>BC3 Blog Directory</h1>
-        <p>Découvrez les blogs des utilisateurs</p>
+        <div class="header-content">
+            <h1>BC3 Blog Directory</h1>
+            <p>Découvrez les blogs des utilisateurs</p>
+            <button id="toggleTheme">🌙 Dark Mode</button>
+        </div>
     </header>
 
     <main>
@@ -20,6 +24,9 @@
                 <option value="title-asc">Titre A → Z</option>
                 <option value="title-desc">Titre Z → A</option>
             </select>
+            <div class="tag-filters" id="tagFilters">
+                <!-- Boutons de filtres générés par JS -->
+            </div>
         </section>
 
         <section class="blog-list" id="blogList">
