@@ -51,10 +51,11 @@ jobs:
             WEB_DIR="/var/www/html"
             cp index.html $WEB_DIR/index.html
             cp style.css $WEB_DIR/style.css
+            cp script.js $WEB_DIR/script.js
 
             # Vérifier permissions
-            chown www-data:www-data $WEB_DIR/index.html $WEB_DIR/style.css
-            chmod 644 $WEB_DIR/index.html $WEB_DIR/style.css
+            chown www-data:www-data $WEB_DIR/index.html $WEB_DIR/style.css $WEB_DIR/script.js
+            chmod 644 $WEB_DIR/index.html $WEB_DIR/style.css $WEB_DIR/script.js
 
             # Redémarrer Apache (NOPASSWD doit être configuré)
             sudo /usr/bin/systemctl restart apache2
