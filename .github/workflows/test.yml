@@ -45,7 +45,7 @@ jobs:
             cd $TMP_DIR
 
             # Cloner le repo (profondité minimale pour gagner du temps)
-            git clone --depth 1 git@github.com:momox886/ci-cd.git .
+            git clone --depth 1 https://github.com/momox886/ci-cd.git .
 
             # Copier les fichiers dans le répertoire Apache
             WEB_DIR="/var/www/html"
