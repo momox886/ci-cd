@@ -2,10 +2,30 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mon premier site DevOps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BC3 Blog Directory</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Bienvenue sur mon site DevOps 🚀</h1>
-    <p>Ceci est mon premier projet de CI/CD.</p>
+    <header>
+        <h1>BC3 Blog Directory</h1>
+        <p>Découvrez les blogs des utilisateurs</p>
+    </header>
+
+    <main>
+        <section class="search">
+            <input type="text" id="searchInput" placeholder="Rechercher un blog...">
+        </section>
+
+        <section class="blog-list" id="blogList">
+            <!-- Les blogs seront injectés par JS -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 BC3 Blog Directory</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
