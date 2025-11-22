@@ -42,3 +42,7 @@ jobs:
       - name: Listing repo
         run: |
           ls
+
+      - name: Qui je suis
+        run: |
+          whoami
