@@ -13,8 +13,13 @@
     </header>
 
     <main>
-        <section class="search">
+        <section class="controls">
             <input type="text" id="searchInput" placeholder="Rechercher un blog...">
+            <select id="sortSelect">
+                <option value="default">Trier par défaut</option>
+                <option value="title-asc">Titre A → Z</option>
+                <option value="title-desc">Titre Z → A</option>
+            </select>
         </section>
 
         <section class="blog-list" id="blogList">
