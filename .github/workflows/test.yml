@@ -23,3 +23,15 @@ jobs:
       - name: Ping deployment server
         run: |
           ping -c 3 100.72.165.35   # <-- remplace par l’IP Tailscale de ta machine
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H 100.72.165.35 >> ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Test SSH Connexion
+        run: ssh momo@100.72.165.35 "echo 'Connexion OK !'"
