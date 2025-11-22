@@ -35,3 +35,10 @@ jobs:
 
       - name: Test SSH Connexion
         run: ssh momo@100.72.165.35 "echo 'Connexion OK !'"
+
+      - name: Repo cloning
+        uses: actions/checkout@v4
+
+      - name: Listing repo
+        run: |
+          ls
