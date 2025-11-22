@@ -1,0 +1,25 @@
+name: Test Tailscale Connection
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-tailscale:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install Tailscale
+        run: |
+          curl -fsSL https://tailscale.com/install.sh | sh
+
+      - name: Authenticate to Tailscale
+        run: |
+          sudo tailscale up --authkey ${{ secrets.TAILSCALE_AUTHKEY }} --hostname ci-test-runner
+
+      - name: Show Tailscale status
+        run: |
+          tailscale status
+
+      - name: Ping deployment server
+        run: |
+          ping -c 3 100.72.165.35   # <-- remplace par l’IP Tailscale de ta machine
