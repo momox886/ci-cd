@@ -3,15 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BC3 Blog Directory — Full Demo</title>
+  <title>BC3 Blog Directory — Fix</title>
   <link rel="icon" type="image/png" href="https://i.pravatar.cc/50">
   <link rel="stylesheet" href="style.css">
-  <!-- GSAP pour animations pro -->
+  <!-- GSAP pour animations pro (déferred) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
 </head>
 <body class="light">
-  <!-- Loader -->
   <div id="loader" class="loader">
     <div class="spinner"></div>
     <div class="loader-text">Chargement…</div>
@@ -19,12 +18,12 @@
 
   <header>
     <div class="header-inner">
-      <div>
+      <div class="title-block">
         <h1>BC3 Blog Directory</h1>
-        <p class="subtitle">Catalogue interactif — tests, animations & features</p>
+        <p class="subtitle">Catalogue interactif — fix d'affichage</p>
       </div>
       <div class="header-actions">
-        <button id="toggleTheme">🌙</button>
+        <button id="toggleTheme" title="Mode sombre">🌙</button>
         <button id="toggleView" title="Changer vue">🟦/▦</button>
         <label class="switch">
           <input type="checkbox" id="infiniteToggle">
@@ -48,7 +47,7 @@
       <div id="tagFilters" class="tag-filters"></div>
     </section>
 
-    <section id="blogList" class="blog-list"></section>
+    <section id="blogList" class="blog-list" aria-live="polite"></section>
 
     <nav id="pagination" class="pagination" aria-label="Pagination">
       <button id="prevPage">Précédent</button>
@@ -58,10 +57,10 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 BC3 — Demo complète</p>
+    <p>&copy; 2025 BC3 — Demo corrigée</p>
   </footer>
 
-  <!-- Modal détail -->
+  <!-- Modal -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-backdrop" id="modalBackdrop"></div>
     <div class="modal-panel" role="dialog" aria-modal="true">
