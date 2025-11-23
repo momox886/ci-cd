@@ -37,29 +37,24 @@ jobs:
       - name: Deploy to server
         run: |
           ssh root@100.72.165.35 << 'EOF'
-            echo "Déploiement du site statique..."
+          echo "Déploiement du site statique..."
 
-            # Répertoire temporaire pour cloner le repo
-            TMP_DIR="/tmp/site"
-            rm -rf $TMP_DIR
-            mkdir -p $TMP_DIR
-            cd $TMP_DIR
+          DP_DIR="$HOME/ci-cd"
 
-            # Cloner le repo (profondité minimale pour gagner du temps)
-            git clone --depth 1 https://github.com/momox886/ci-cd.git .
+          # Cloner l e repo dans le bon dossier
+          git clone --depth=1 https://github.com/momox886/ci-cd.git "$DP_DIR" || echo "Repo existe déjà, mise à jour"
+          cd "$DP_DIR"
 
-            # Copier les fichiers dans le répertoire Apache
-            WEB_DIR="/var/www/html"
-            cp index.html $WEB_DIR/index.html
-            cp style.css $WEB_DIR/style.css
-            cp script.js $WEB_DIR/script.js
-            cp test.png $WEB_DIR/test.png
-            # Vérifier permissions
-            chown www-data:www-data $WEB_DIR/index.html $WEB_DIR/style.css $WEB_DIR/script.js $WEB_DIR/test.png
-            chmod 644 $WEB_DIR/index.html $WEB_DIR/style.css $WEB_DIR/script.js $WEB_DIR/test.png
+          # Créer et activer l'environnement virtuel
+          python3 -m venv .venv
+          source .venv/bin/activate
 
-            # Redémarrer Apache (NOPASSWD doit être configuré)
-            sudo /usr/bin/systemctl restart apache2
+          # Installer les dépendances
+          pip install -r requirements.txt
 
-            echo "Déploiement terminé !"
+          # Lancer l'application Flask en arrière-plan
+          nohup python run.py > flask.log 2>&1 &
+
+          echo "Déploiement terminé !"
           EOF
+
