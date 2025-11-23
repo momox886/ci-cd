@@ -10,33 +10,30 @@
 <body class="light">
 
     <header>
-        <div class="header-content">
-            <h1>BC3 Blog Directory</h1>
-            <p>Découvrez les blogs des utilisateurs</p>
-            <button id="toggleTheme">🌙 Dark Mode</button>
-        </div>
+        <h1>BC3 Blog Directory</h1>
+        <p>Découvrez les blogs des utilisateurs</p>
+        <button id="toggleTheme">🌙 Mode Sombre</button>
     </header>
 
     <main>
         <section class="controls">
-            <input type="text" id="searchInput" placeholder="Rechercher un blog...">
+            <input type="text" id="searchInput" placeholder="🔍 Rechercher un blog...">
             <select id="sortSelect">
                 <option value="default">Trier par défaut</option>
                 <option value="title-asc">Titre A → Z</option>
                 <option value="title-desc">Titre Z → A</option>
+                <option value="likes">Les + likés</option>
             </select>
-            <div class="tag-filters" id="tagFilters">
-                <!-- Boutons de filtres générés par JS -->
-            </div>
         </section>
 
-        <section class="blog-list" id="blogList">
-            <!-- Les blogs seront injectés par JS -->
-        </section>
+        <section id="tagFilters" class="tag-filters"></section>
+
+        <section id="blogList" class="blog-list"></section>
+
     </main>
 
     <footer>
-        <p>&copy; 2025 BC3 Blog Directory</p>
+        <p>&copy; 2025 BC3 — Site moderne & animé</p>
     </footer>
 
     <script src="script.js"></script>
